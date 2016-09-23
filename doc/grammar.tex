@@ -1,0 +1,65 @@
+\documentclass[12pt]{report}
+\usepackage{syntax}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{bm}
+
+\title{\textbf{Viper Language Grammar}}
+\author{\texttt{CC4 - Compiladores} \\ \texttt{Universidad Galileo}}
+\date{}
+\begin{document}
+\maketitle
+\setlength{\grammarindent}{9em}
+\begin{grammar}
+<program> ::= <functions>
+
+<functions> ::= <functions><function>
+\alt <function>
+
+<function> ::= \textbf{def id (} <formals> \textbf{) :} <rtype> \textbf{\{} <statements> <return> \textbf{\}}
+
+<type> ::= \textbf{int}
+\alt \textbf{bool}
+
+<rtype> ::= <type>
+\alt \textbf{void}
+
+<formals> ::= <formals> \textbf{,} <formal>
+\alt <formal>
+\alt $\bm{\epsilon}$
+
+<formal> ::= \textbf{id :} <type>
+
+<statements> ::= <statements><statement>
+\alt <statement>
+\alt $\bm{\epsilon}$
+
+<return> ::= \textbf{return} <expr> \textbf{;}
+\alt $\bm{\epsilon}$
+
+<statement> ::= <expr> \textbf{;}
+\alt \textbf{id} `=' <expr> \textbf{;}
+\alt <type> \textbf{id} <init> \textbf{;}
+\alt \textbf{print (} <expr> \textbf{);}
+\alt \textbf{if (} <expr> \textbf{) \{} <statements> \textbf{\} else \{} <statements> \textbf{\}}
+\alt \textbf{while (} <expr> \textbf{) \{} <statements> \textbf{\}}
+
+<init> ::= `=' <expr>
+\alt $\bm{\epsilon}$
+
+<expr> ::= \textbf{intNumber}
+\alt \textbf{true}
+\alt \textbf{false}
+\alt \textbf{string}
+\alt \textbf{id}
+\alt <expr> <op> <expr>
+\alt \textbf{not} <expr>
+\alt \textbf{(} <expr> \textbf{)}
+\alt \textbf{id (} <actuals> \textbf{)}
+
+<op> ::= `+' | `-' | `*' | `/' | `==' | `!=' | `<=' | `>=' | `<' | `>' | \textbf{and} | \textbf{or}
+
+<actuals> ::= <actuals> \textbf{,} <expr>
+\alt <expr>
+\alt $\bm{\epsilon}$
+\end{grammar}
+\end{document}
