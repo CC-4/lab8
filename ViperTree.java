@@ -428,7 +428,7 @@ class Declaration extends Statement {
         }else{
             init.semant(OM);
             OM.addId(name,type);
-            if(! init.getType().equals(this.type) && ! init.getType().equals(Utils.NO_TYPE)){
+            if(! init.getType().equals(this.type)){
                 SemantErrors.diffInitType(init.getLineNumber(), this.name, type, init.getType());
             }
         }
