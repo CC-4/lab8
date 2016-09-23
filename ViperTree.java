@@ -266,6 +266,7 @@ class Function extends ViperFunction {
                 s.semant(OM);
             }
             return_.semant(OM);
+            OM.exitScope();
             if(rtype.equals(Utils.VOID_TYPE)){
                 if(! return_.getType().equals(Utils.NO_TYPE)){
                     SemantErrors.noReturnExpected(this.return_.getLineNumber());
